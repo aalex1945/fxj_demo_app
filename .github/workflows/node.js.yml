@@ -7,18 +7,18 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest 
     steps:
-      - name: Checkout
-    uses: actions/checkout@master 
-    with: 
-      persist-credentials: false
+    - name: Checkout
+      uses: actions/checkout@master 
+      with:
+        persist-credentials: false
     - name: Install and Build
       run: |
         npm install
         npm run-script build
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: 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
+      with: 
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} 
         BRANCH: fxj_demo_app
-        FOLDER: dist 
+        FOLDER: dist  
         BUILD_SCRIPT: npm install && npm run build 
